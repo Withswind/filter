@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>筛选分页组件</title>
+	</head>
+	<body>
+		<div class="filter"></div>
+		<div class="container">
+			<script type="text/html" class="tmpl">
+			</script>
+		</div>
+		<script src="./jquery@1.7.1.min.js"></script>
+		<script src="./jquery.filter@0.0.1.js"></script>
+		<script src="./arttemplate@3.0.0.min.js"></script>
+		<script>
+			var $container = $(".container");
+			$.ajax({
+				type : "get",
+				url : "http://www.ikindness.cn/api/test/getProduct",
+				success : function(data){//1、{data:[]}
+					$(".filter").DataGetter({
+						size : 7,
+						sort : ["price", "sold"],
+						limit : ["price"],
+						pagination : pagination
+						render : function render(data){//5、[]
+							$container.html(JSON.stringify(data));
+			}
+					}, data.data);//4、[]
+				}
+			});
+		</script>
+	</body>
+</html>
+
